@@ -475,10 +475,10 @@ class Message(object):
         """
         if not self._message:
             raise ValueError("No message data to encode.")
-        cloned_data = self._message.clone()
-        self._populate_message_attributes(cloned_data)
+        #cloned_data = self._message.clone()
+        self._populate_message_attributes(self._message)
         encoded_data = []
-        c_uamqp.get_encoded_message_size(cloned_data, encoded_data)
+        c_uamqp.get_encoded_message_size(self._message, encoded_data)
         return b"".join(encoded_data)
 
     def get_data(self):
